@@ -42,7 +42,7 @@ const DistributionChart = ({ data }: DistributionChartProps) => {
         config={{
           Negativas: { color: "#ef4444" },
           Neutras: { color: "#f59e0b" },
-          Positivas: { color: "#22c55e" },
+          Positivas: { color: "#1D5AA7" },
         }}
       >
         <BarChart
@@ -51,8 +51,17 @@ const DistributionChart = ({ data }: DistributionChartProps) => {
           stackOffset="expand"
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis type="number" tickFormatter={(value) => `${(value * 100).toFixed(0)}%`} />
-          <YAxis type="category" dataKey="name" width={80} />
+          <XAxis 
+            type="number" 
+            tickFormatter={(value) => `${(value * 100).toFixed(0)}%`} 
+            tick={{fontSize: 12}} 
+          />
+          <YAxis 
+            type="category" 
+            dataKey="name" 
+            width={80} 
+            tick={{fontSize: 12}} 
+          />
           <Tooltip 
             formatter={(value, name) => [`${value} avaliações`, name]} 
             content={<ChartTooltipContent />}

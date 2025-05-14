@@ -23,13 +23,13 @@ interface TimelineChartProps {
 }
 
 const colors = [
-  "#7341ff", // Primary
+  "#1D5AA7", // Primary (cor da logo)
   "#22c55e", // Green
   "#ef4444", // Red
   "#3b82f6", // Blue
   "#f59e0b", // Yellow
   "#8b5cf6", // Purple
-  "#ec4899", // Pink
+  "#0B2344", // Dark Blue (cor da logo)
 ];
 
 const TimelineChart = ({ data, selectedAspects, setSelectedAspects }: TimelineChartProps) => {
@@ -78,7 +78,7 @@ const TimelineChart = ({ data, selectedAspects, setSelectedAspects }: TimelineCh
         ))}
       </div>
       
-      <div className="h-[400px] w-full">
+      <div className="h-[350px] w-full">
         <ChartContainer 
           config={
             data.reduce((config, aspect, i) => {
@@ -94,8 +94,9 @@ const TimelineChart = ({ data, selectedAspects, setSelectedAspects }: TimelineCh
             <XAxis 
               dataKey="date" 
               tickFormatter={(date) => new Date(date).toLocaleDateString('pt-BR')}
+              tick={{fontSize: 12}}
             />
-            <YAxis domain={[0, 10]} />
+            <YAxis domain={[0, 10]} tick={{fontSize: 12}} />
             <Tooltip content={<ChartTooltipContent />} />
             <Legend />
             {data.map((aspect, index) => (

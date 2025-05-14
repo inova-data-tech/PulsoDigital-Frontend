@@ -42,17 +42,17 @@ export default {
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
-					50: "#f3f1ff",
-					100: "#e9e5ff",
-					200: "#d5cfff",
-					300: "#b7a9ff",
-					400: "#9478ff",
-					500: "#7341ff",
-					600: "#631bff",
-					700: "#611bf8",
-					800: "#4607d0",
-					900: "#3c08aa",
-					950: "#220174",
+					50: "#e6edf5",
+					100: "#ccdae5",
+					200: "#99b5cb",
+					300: "#6691b1",
+					400: "#336c97",
+					500: "#1D5AA7", // Cor da logo
+					600: "#174886",
+					700: "#123564",
+					800: "#0c2343",
+					900: "#0B2344", // Cor da logo
+					950: "#071629",
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',

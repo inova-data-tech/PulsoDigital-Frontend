@@ -38,60 +38,60 @@ const StatsCards = ({ tag, data }: StatsCardsProps) => {
     current.average < worst.average ? current : worst, aspectAverages[0]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       <Card className="shadow-md hover:shadow-lg transition-all duration-300">
-        <CardContent className="p-6 flex flex-col items-center text-center">
+        <CardContent className="p-4 md:p-6 flex flex-col items-center text-center">
           <div className="p-3 rounded-full bg-primary-100 mb-4">
-            <ChartBar className="h-6 w-6 text-primary-600" />
+            <ChartBar className="h-5 w-5 text-primary-600" />
           </div>
-          <h3 className="text-xl font-medium">Total de Avaliações</h3>
-          <p className="text-3xl font-bold mt-2 text-gray-800">
+          <h3 className="text-lg md:text-xl font-medium">Total de Avaliações</h3>
+          <p className="text-2xl md:text-3xl font-bold mt-2 text-gray-800">
             {totalReviews}
           </p>
-          <p className="text-sm text-gray-500 mt-1">avaliações registradas</p>
+          <p className="text-xs md:text-sm text-gray-500 mt-1">avaliações registradas</p>
         </CardContent>
       </Card>
 
       <Card className="shadow-md hover:shadow-lg transition-all duration-300">
-        <CardContent className="p-6 flex flex-col items-center text-center">
+        <CardContent className="p-4 md:p-6 flex flex-col items-center text-center">
           <div className="p-3 rounded-full bg-primary-100 mb-4">
-            <Calendar className="h-6 w-6 text-primary-600" />
+            <Calendar className="h-5 w-5 text-primary-600" />
           </div>
-          <h3 className="text-xl font-medium">Última Avaliação</h3>
-          <p className="text-xl font-bold mt-2 text-gray-800">
+          <h3 className="text-lg md:text-xl font-medium">Última Avaliação</h3>
+          <p className="text-lg md:text-xl font-bold mt-2 text-gray-800">
             {lastReviewDate.toLocaleDateString('pt-BR')}
           </p>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-xs md:text-sm text-gray-500 mt-1">
             {lastReviewDate.toLocaleTimeString('pt-BR')}
           </p>
         </CardContent>
       </Card>
 
       <Card className="shadow-md hover:shadow-lg transition-all duration-300">
-        <CardContent className="p-6 flex flex-col items-center text-center">
+        <CardContent className="p-4 md:p-6 flex flex-col items-center text-center">
           <div className="p-3 rounded-full bg-green-100 mb-4">
-            <TrendingUp className="h-6 w-6 text-green-600" />
+            <TrendingUp className="h-5 w-5 text-green-600" />
           </div>
-          <h3 className="text-xl font-medium">Melhor Aspecto</h3>
-          <p className="text-xl font-bold mt-2 text-gray-800">
+          <h3 className="text-lg md:text-xl font-medium">Melhor Aspecto</h3>
+          <p className="text-lg md:text-xl font-bold mt-2 text-gray-800">
             {bestAspect.name}
           </p>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-xs md:text-sm text-gray-500 mt-1">
             Nota média: <span className="text-green-600 font-semibold">{bestAspect.average.toFixed(1)}</span>
           </p>
         </CardContent>
       </Card>
 
       <Card className="shadow-md hover:shadow-lg transition-all duration-300">
-        <CardContent className="p-6 flex flex-col items-center text-center">
+        <CardContent className="p-4 md:p-6 flex flex-col items-center text-center">
           <div className="p-3 rounded-full bg-red-100 mb-4">
-            <TrendingDown className="h-6 w-6 text-red-600" />
+            <TrendingDown className="h-5 w-5 text-red-600" />
           </div>
-          <h3 className="text-xl font-medium">Pior Aspecto</h3>
-          <p className="text-xl font-bold mt-2 text-gray-800">
+          <h3 className="text-lg md:text-xl font-medium">Pior Aspecto</h3>
+          <p className="text-lg md:text-xl font-bold mt-2 text-gray-800">
             {worstAspect.name}
           </p>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-xs md:text-sm text-gray-500 mt-1">
             Nota média: <span className="text-red-600 font-semibold">{worstAspect.average.toFixed(1)}</span>
           </p>
         </CardContent>

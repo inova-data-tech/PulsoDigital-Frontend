@@ -34,18 +34,18 @@ const RadarComparisonChart = ({ data }: RadarComparisonChartProps) => {
     <div className="h-[300px]">
       <ChartContainer 
         config={{ 
-          average: { color: "#7341ff" } 
+          average: { color: "#1D5AA7" } 
         }}
       >
         <RadarChart outerRadius={90} data={radarData}>
           <PolarGrid />
-          <PolarAngleAxis dataKey="subject" />
-          <PolarRadiusAxis domain={[0, 10]} />
+          <PolarAngleAxis dataKey="subject" tick={{fontSize: 12}} />
+          <PolarRadiusAxis domain={[0, 10]} tick={{fontSize: 12}} />
           <Radar
             name="Média"
             dataKey="average"
-            stroke="#7341ff"
-            fill="#7341ff"
+            stroke="#1D5AA7"
+            fill="#1D5AA7"
             fillOpacity={0.6}
           />
         </RadarChart>

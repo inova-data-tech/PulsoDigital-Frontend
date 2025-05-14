@@ -27,7 +27,7 @@ const SentimentGauge = ({ value }: SentimentGaugeProps) => {
     color = "#f59e0b"; // amarelo
   } else {
     category = "Positiva";
-    color = "#22c55e"; // verde
+    color = "#1D5AA7"; // cor da logo
   }
 
   // Dados para o gauge semi-circular
@@ -89,12 +89,12 @@ const SentimentGauge = ({ value }: SentimentGaugeProps) => {
       </div>
       
       {/* Colorized progress bar representation */}
-      <div className="w-full mt-6">
+      <div className="w-full mt-4">
         <div className="flex justify-between mb-1 text-sm">
           <span>0</span>
           <span className="text-red-500">Negativa</span>
           <span className="text-yellow-500">Neutra</span>
-          <span className="text-green-500">Positiva</span>
+          <span className="text-primary-500">Positiva</span>
           <span>10</span>
         </div>
         <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">

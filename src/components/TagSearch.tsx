@@ -2,8 +2,10 @@
 import { useState } from "react";
 import { TagSearchState } from "@/lib/types";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const TagSearch = () => {
+  const navigate = useNavigate();
   const [state, setState] = useState<TagSearchState>({
     isLoading: false,
     tag: "",
@@ -23,12 +25,12 @@ const TagSearch = () => {
     
     setState({ ...state, isLoading: true });
     
-    // Simulate API request
+    // Simular tempo de carregamento
     setTimeout(() => {
       toast.success(`Análise da tag "${state.tag}" foi iniciada!`);
       setState({ ...state, isLoading: false });
-      // In a real app, this would navigate to a results page
-    }, 2000);
+      navigate(`/resultados/${encodeURIComponent(state.tag.trim())}`);
+    }, 1500);
   };
 
   return (

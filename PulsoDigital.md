@@ -19,6 +19,10 @@ O **Pulso Digital** é uma ferramenta open source projetada para analisar a perc
 ```
 tag-sense-insights/
 ├── public/
+│   ├── images/
+│   │   ├── pulso-digital-logo.svg
+│   │   ├── pulso-digital-logo.png
+│   │   └── pulso-digital-icon.svg
 ├── src/
 │   ├── components/
 │   │   ├── dashboard/
@@ -55,6 +59,7 @@ tag-sense-insights/
 ├── package.json
 ├── postcss.config.js
 ├── README.md
+├── PulsoDigital.md
 ├── tailwind.config.ts
 ├── tsconfig.app.json
 ├── tsconfig.json
@@ -70,6 +75,7 @@ A página inicial apresenta uma interface limpa e intuitiva com:
 - Campo de busca para inserção da tag a ser analisada
 - Cards de recursos destacando os principais benefícios da ferramenta
 - Uma UI moderna com gradientes e transições suaves
+- Logo oficial do Pulso Digital no topo da página
 
 ### Dashboard (`Dashboard.tsx`)
 
@@ -77,6 +83,7 @@ O dashboard é o coração da aplicação, exibindo as análises da tag pesquisa
 - Cabeçalho com o nome da tag e informações de atualização
 - Conjunto de gráficos e visualizações organizados em cards
 - Navegação para retorno à página inicial
+- Logo oficial do Pulso Digital na barra superior e no rodapé
 
 ### Página de Erro (`NotFound.tsx`)
 
@@ -87,19 +94,29 @@ Página exibida quando o usuário tenta acessar uma rota inexistente.
 ### Componentes de Dashboard
 
 #### `TimelineChart.tsx`
-Gráfico de linha que mostra a evolução das notas por aspecto ao longo do tempo. Permite seleção e filtragem dos aspectos visualizados.
+Gráfico de linha que mostra a evolução das notas por aspecto ao longo do tempo. Permite seleção e filtragem dos aspectos visualizados através de checkboxes interativos. Recentemente aprimorado para:
+- Maior espaço para visualização (550px de altura)
+- Checkboxes ampliados e estilizados para melhor usabilidade
+- Espaçamento adequado para exibição completa dos eixos X e Y
+- Margens ajustadas para acomodar as datas no eixo X
 
 #### `SentimentGauge.tsx`
-Indicador de medidor (gauge) que exibe o sentimento médio geral em uma escala de 0 a 10.
+Indicador de medidor (gauge) que exibe o sentimento médio geral em uma escala de 0 a 10. Modificado para:
+- Exibir o valor numérico (6.8) sem sobreposição ao gráfico
+- Usar a cor da identidade visual do Pulso Digital (#1D5AA7)
 
 #### `DistributionChart.tsx`
-Histograma/gráfico de barras que mostra a distribuição de notas por faixa.
+Histograma/gráfico de barras que mostra a distribuição de notas por faixa. Melhorias implementadas:
+- Cores mais vibrantes para melhor diferenciação entre categorias
+- Independência da seleção de aspectos do TimelineChart
+- Sempre exibe todos os aspectos disponíveis
 
 #### `RadarComparisonChart.tsx`
 Gráfico radar comparando as notas médias por diferentes aspectos.
 
 #### `VolumeChart.tsx`
-Gráfico de barras verticais mostrando o volume de avaliações por período.
+Gráfico de barras verticais mostrando o volume de avaliações por período. Aprimorado para:
+- Usar a cor da logo (#1D5AA7) nas colunas do gráfico
 
 #### `StatsCards.tsx`
 Conjunto de cards com indicadores rápidos:
@@ -120,7 +137,7 @@ Formulário de busca que permite ao usuário inserir uma tag para análise. Incl
 Card que exibe um recurso destacado da plataforma, com ícone, título e descrição.
 
 #### `PulsoDigitalLogo.tsx`
-Componente da logo do Pulso Digital que pode ser redimensionado e estilizado.
+Componente da logo do Pulso Digital atualizado para usar a imagem oficial da marca. Pode ser redimensionado e estilizado conforme necessário.
 
 ## Utilitários e Tipos de Dados
 
@@ -171,6 +188,26 @@ Contém funções para geração de dados simulados para os gráficos:
 3. O dashboard exibe visualizações baseadas em dados simulados relacionados à tag pesquisada
 4. O usuário pode interagir com os gráficos, filtrar aspectos e analisar os dados
 
+## Recursos e Melhorias Implementadas
+
+### Identidade Visual
+- Logo oficial do Pulso Digital implementada em todo o aplicativo
+- Favicon personalizado com ícone do Pulso Digital
+- Título do site atualizado para "Pulso Digital"
+- Padronização das cores em todos os componentes
+
+### Correções no Dashboard
+- Espaço ampliado para o gráfico de linha do tempo
+- Filtros (checkboxes) maiores e mais intuitivos
+- Isolamento dos filtros para afetar apenas o gráfico de linha
+- Correção de margens e espaçamentos em todos os gráficos
+- Ajuste nas cores para melhor visualização e consistência
+
+### Documentação
+- README profissional com descrição clara do projeto
+- Adição das instruções de execução simplificadas
+- Atualização da documentação técnica com as alterações implementadas
+
 ## Estado Atual e Próximos Passos
 
 Atualmente, a aplicação está em fase de desenvolvimento com dados simulados. A estrutura para integração com APIs ou serviços de web scraping está preparada, mas ainda não implementada completamente.
@@ -181,3 +218,7 @@ Próximos passos para desenvolvimento:
 - Incorporar mais fontes de dados e plataformas
 - Melhorar os modelos de análise de sentimento e categorização de aspectos
 - Adicionar recursos de exportação e compartilhamento de relatórios 
+
+---
+
+© 2024 Pulso Digital | Documentação atualizada em 14/05/2024 

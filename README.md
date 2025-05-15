@@ -1,73 +1,46 @@
-# Welcome to your Lovable project
+# Pulso Digital
 
-## Project info
+![Logo Pulso Digital](public/pulso-digital-logo.png)
 
-**URL**: https://lovable.dev/projects/c4db1000-0e67-4631-b52c-aae4644a6f35
+## Sobre o Projeto
 
-## How can I edit this code?
+O **Pulso Digital** é uma ferramenta avançada de análise de percepção pública de tags na internet. Projetada para monitorar e analisar menções, comentários e avaliações relacionadas a termos específicos como produtos, marcas ou tópicos em alta, a aplicação processa esses dados para gerar visualizações e insights valiosos.
 
-There are several ways of editing your application.
+O dashboard intuitivo permite visualizar:
 
-**Use Lovable**
+- **Sentimento médio** dos usuários sobre o tema pesquisado
+- **Distribuição de notas** por categoria (positiva, neutra, negativa)
+- **Evolução temporal** das avaliações
+- **Comparativo por aspectos** através de gráfico radar
+- **Volume de avaliações** ao longo do tempo
+- **Estatísticas rápidas** com principais indicadores
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/c4db1000-0e67-4631-b52c-aae4644a6f35) and start prompting.
+## Tecnologias
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Frontend**: React + TypeScript
+- **Estilização**: TailwindCSS + Shadcn/UI
+- **Build**: Vite
+- **Gráficos**: Recharts
+- **Gerenciamento de Estado**: React Query
 
-**Use your preferred IDE**
+## Como Executar
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+```bash
+# Instalar dependências
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Iniciar o servidor de desenvolvimento
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Funcionalidades Principais
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Pesquisa de tags específicas para análise
+- Dashboard completo com múltiplas visualizações
+- Filtros interativos por aspecto
+- Visualização de tendências temporais
+- Análise de sentimento
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/c4db1000-0e67-4631-b52c-aae4644a6f35) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+© 2025 Pulso Digital | Desenvolvido com 💙

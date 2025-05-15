@@ -27,6 +27,8 @@ const COLORS = {
 
 const DistributionChart = ({ data }: DistributionChartProps) => {
   // Calcular a distribuição de notas por categoria para cada aspecto
+  // Usando clonedData para garantir que as modificações feitas no TimelineChart
+  // não afetem este componente
   const distributionData = data.map(aspect => {
     const allValues = aspect.timelineData.map(point => point.value);
     

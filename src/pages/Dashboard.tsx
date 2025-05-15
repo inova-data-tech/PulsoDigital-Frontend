@@ -21,6 +21,10 @@ const Dashboard = () => {
   // Para fins de demonstração, vamos criar dados simulados
   const aspectData = getAspectData();
 
+  // Cria uma cópia completa dos dados que não será afetada pela seleção de aspectos
+  // Isso garante que apenas o TimelineChart será afetado pela seleção de checkboxes
+  const allAspectsData = [...aspectData];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-6 px-4">
       <div className="container mx-auto max-w-[1200px]">
@@ -63,7 +67,7 @@ const Dashboard = () => {
               <CardTitle className="text-lg">Distribuição de Notas</CardTitle>
             </CardHeader>
             <CardContent className="p-4">
-              <DistributionChart data={aspectData} />
+              <DistributionChart data={allAspectsData} />
             </CardContent>
           </Card>
         </div>
@@ -73,12 +77,14 @@ const Dashboard = () => {
           <CardHeader className="pb-2 bg-gray-50">
             <CardTitle className="text-lg">Evolução das Notas ao Longo do Tempo</CardTitle>
           </CardHeader>
-          <CardContent className="p-6 pb-8">
-            <TimelineChart 
-              data={aspectData} 
-              selectedAspects={selectedAspects} 
-              setSelectedAspects={setSelectedAspects} 
-            />
+          <CardContent className="p-8 pt-10 pb-16 pl-10 pr-10">
+            <div className="h-[550px]">
+              <TimelineChart 
+                data={aspectData} 
+                selectedAspects={selectedAspects} 
+                setSelectedAspects={setSelectedAspects} 
+              />
+            </div>
           </CardContent>
         </Card>
 
@@ -89,7 +95,7 @@ const Dashboard = () => {
               <CardTitle className="text-lg">Comparativo por Aspecto</CardTitle>
             </CardHeader>
             <CardContent className="p-4">
-              <RadarComparisonChart data={aspectData} />
+              <RadarComparisonChart data={allAspectsData} />
             </CardContent>
           </Card>
 
@@ -99,7 +105,7 @@ const Dashboard = () => {
               <CardTitle className="text-lg">Volume de Avaliações</CardTitle>
             </CardHeader>
             <CardContent className="p-4">
-              <VolumeChart data={aspectData} />
+              <VolumeChart data={allAspectsData} />
             </CardContent>
           </Card>
         </div>

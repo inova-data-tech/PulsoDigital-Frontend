@@ -62,18 +62,18 @@ const TimelineChart = ({ data, selectedAspects, setSelectedAspects }: TimelineCh
 
   return (
     <div>
-      <div className="mb-4 flex flex-wrap gap-2">
+      <div className="mb-4 flex flex-wrap gap-3">
         {allAspects.map((aspect, index) => (
-          <div key={aspect} className="flex items-center space-x-1 bg-gray-50 px-2 py-1 rounded">
+          <div key={aspect} className="flex items-center space-x-2 bg-gray-50 px-3 py-2 rounded shadow-sm hover:bg-gray-100 transition-colors">
             <Checkbox 
               id={`aspect-${index}`} 
               checked={selectedAspects.includes(aspect)}
               onCheckedChange={() => toggleAspect(aspect)}
-              className="data-[state=checked]:bg-[#1D5AA7] data-[state=checked]:text-white h-3 w-3"
+              className="data-[state=checked]:bg-[#1D5AA7] data-[state=checked]:text-white h-4 w-4"
             />
             <label 
               htmlFor={`aspect-${index}`} 
-              className="text-xs font-medium leading-none cursor-pointer select-none"
+              className="text-sm font-medium cursor-pointer select-none"
               style={{ color: selectedAspects.includes(aspect) ? colors[index % colors.length] : 'inherit' }}
             >
               {aspect}
@@ -82,7 +82,7 @@ const TimelineChart = ({ data, selectedAspects, setSelectedAspects }: TimelineCh
         ))}
       </div>
       
-      <div className="h-[400px] w-full">
+      <div className="h-[420px] w-full">
         <ChartContainer 
           config={
             data.reduce((config, aspect, i) => {
@@ -95,7 +95,7 @@ const TimelineChart = ({ data, selectedAspects, setSelectedAspects }: TimelineCh
         >
           <LineChart 
             data={recentData}
-            margin={{ top: 20, right: 30, left: 10, bottom: 30 }}
+            margin={{ top: 20, right: 30, left: 15, bottom: 60 }}
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis 
@@ -104,25 +104,38 @@ const TimelineChart = ({ data, selectedAspects, setSelectedAspects }: TimelineCh
                 const d = new Date(date);
                 return `${d.getDate()}/${d.getMonth() + 1}`;
               }}
-              tick={{fontSize: 11}}
-              angle={-30}
+              tick={{fontSize: 12}}
+              angle={-45}
               textAnchor="end"
-              height={40}
-              dy={10}
+              height={60}
+              dy={15}
+              tickMargin={10}
+              label={{ 
+                value: 'Data', 
+                position: 'bottom', 
+                offset: 40,
+                style: { fontSize: 12, fill: '#666' }
+              }}
             />
             <YAxis 
               domain={[0, 10]} 
-              tick={{fontSize: 11}} 
-              width={30}
+              tick={{fontSize: 12}} 
+              width={40}
               tickCount={6}
+              label={{ 
+                value: 'Nota', 
+                angle: -90, 
+                position: 'left',
+                style: { textAnchor: 'middle', fontSize: 12, fill: '#666' }
+              }}
             />
             <Tooltip content={<ChartTooltipContent />} />
             <Legend 
               verticalAlign="top" 
-              height={30}
-              wrapperStyle={{ paddingBottom: 5, fontSize: 11 }}
+              height={25}
+              wrapperStyle={{ fontSize: 12 }}
               iconType="circle"
-              iconSize={7}
+              iconSize={8}
             />
             {data.map((aspect, index) => (
               selectedAspects.includes(aspect.name) && (

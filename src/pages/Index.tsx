@@ -1,7 +1,7 @@
-
 import { Feature } from "@/lib/types";
 import FeatureCard from "@/components/FeatureCard";
 import TagSearch from "@/components/TagSearch";
+import PulsoDigitalLogo from "@/components/PulsoDigitalLogo";
 
 const Index = () => {
   const features: Feature[] = [
@@ -28,6 +28,10 @@ const Index = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 py-8 px-4">
       <div className="w-full max-w-3xl bg-white rounded-2xl shadow-xl p-6 md:p-10 lg:p-16 transform transition-all duration-300 hover:shadow-2xl">
+        <div className="flex justify-center mb-8">
+          <PulsoDigitalLogo width={250} height={100} />
+        </div>
+        
         <div className="text-center mb-12">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold gradient-text mb-4">
             Monitoramento Inteligente de Tags

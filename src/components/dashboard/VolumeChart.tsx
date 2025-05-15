@@ -1,4 +1,3 @@
-
 import {
   BarChart,
   Bar,
@@ -18,6 +17,9 @@ import {
 interface VolumeChartProps {
   data: AspectData[];
 }
+
+// Cor principal da logo Pulso Digital
+const LOGO_COLOR = "#1D5AA7";
 
 const VolumeChart = ({ data }: VolumeChartProps) => {
   // Unir todos os dados de volume em uma única série
@@ -45,27 +47,57 @@ const VolumeChart = ({ data }: VolumeChartProps) => {
     });
   }
 
+  // Selecionar apenas os últimos 7 dias para evitar lotação do gráfico
+  const recentData = combinedData.slice(-7);
+
   return (
-    <div className="h-[300px]">
+    <div className="h-[300px] w-full">
       <ChartContainer 
         config={{ 
-          volume: { color: "#3b82f6" } 
+          volume: { color: LOGO_COLOR } 
         }}
       >
-        <BarChart data={combinedData}>
+        <BarChart 
+          data={recentData}
+          margin={{ top: 5, right: 5, left: 5, bottom: 25 }}
+        >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis 
             dataKey="date" 
-            tickFormatter={(date) => new Date(date).toLocaleDateString('pt-BR')}
+            tickFormatter={(date) => {
+              const d = new Date(date);
+              return `${d.getDate()}/${d.getMonth() + 1}`;
+            }}
+            tick={{ fontSize: 12 }}
+            angle={-45}
+            textAnchor="end"
+            height={50}
           />
-          <YAxis />
+          <YAxis 
+            width={35}
+            tick={{ fontSize: 12 }}
+            tickFormatter={(value) => value.toFixed(0)}
+          />
           <Tooltip 
             formatter={(value) => [`${value} avaliações`, "Volume"]} 
             labelFormatter={(date) => new Date(date).toLocaleDateString('pt-BR')} 
             content={<ChartTooltipContent />}
           />
-          <Legend />
-          <Bar dataKey="volume" name="Volume" />
+          <Legend 
+            wrapperStyle={{ paddingTop: 10 }} 
+            formatter={(value) => (
+              <span style={{ color: LOGO_COLOR, fontWeight: 'bold' }}>
+                {value}
+              </span>
+            )}
+          />
+          <Bar 
+            dataKey="volume" 
+            name="Volume" 
+            fill={LOGO_COLOR} 
+            stroke={LOGO_COLOR}
+            radius={[4, 4, 0, 0]} 
+          />
         </BarChart>
       </ChartContainer>
     </div>

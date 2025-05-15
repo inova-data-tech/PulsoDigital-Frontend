@@ -1,6 +1,6 @@
 # Pulso Digital
 
-![Logo Pulso Digital](public/pulso-digital-logo.png)
+![Logo Pulso Digital](public/images/pulso-digital-logo.svg)
 
 ## Sobre o Projeto
 

@@ -1,6 +1,8 @@
 # Pulso Digital
 
-![Logo Pulso Digital](public/images/pulso-digital-logo.svg)
+<div align="center">
+  <img src="public/images/pulso-digital-logo.png" alt="Logo Pulso Digital" width="400">
+</div>
 
 ## Sobre o Projeto
 

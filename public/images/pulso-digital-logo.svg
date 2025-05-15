@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" width="600" height="200">
-  <!-- Linha de pulso (heartbeat line) -->
+  <!-- Pulso Digital Logo usando as cores e formato corretos -->
   <path d="M150 100 L100 70 L80 120 L50 40 L20 100" stroke="#002851" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" />
   
-  <!-- Texto "Pulso" -->
+  <!-- Texto "Pulso" na cor certa -->
   <text x="170" y="90" font-family="Arial, sans-serif" font-weight="bold" font-size="60" fill="#002851">Pulso</text>
   
-  <!-- Texto "Digital" -->
+  <!-- Texto "Digital" na cor certa -->
   <text x="170" y="160" font-family="Arial, sans-serif" font-weight="bold" font-size="70" fill="#1D5AA7">Digital</text>
 </svg> 

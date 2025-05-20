@@ -1,18 +1,25 @@
-
 import { useState } from "react";
 import { TagSearchState } from "@/lib/types";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { addSearch, isDashboardReady } from "@/lib/search-service";
+import TopicSelector from "./TopicSelector";
+import { getDefaultTopic } from "@/lib/topics";
 
 const TagSearch = () => {
   const navigate = useNavigate();
   const [state, setState] = useState<TagSearchState>({
     isLoading: false,
     tag: "",
+    topic: getDefaultTopic().id
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, tag: e.target.value });
+  };
+  
+  const handleTopicChange = (topicId: string) => {
+    setState({ ...state, topic: topicId });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -25,16 +32,28 @@ const TagSearch = () => {
     
     setState({ ...state, isLoading: true });
     
-    // Simular tempo de carregamento
-    setTimeout(() => {
-      toast.success(`Análise da tag "${state.tag}" foi iniciada!`);
-      setState({ ...state, isLoading: false });
-      navigate(`/resultados/${encodeURIComponent(state.tag.trim())}`);
-    }, 1500);
+    const trimmedTag = state.tag.trim();
+    
+    // Adicionar ao histórico e iniciar processamento
+    addSearch(trimmedTag, state.topic);
+    
+    // Redefinir o estado do input
+    setState({ ...state, isLoading: false, tag: "" });
+    
+    // Notificar o usuário
+    toast.success(`Análise da tag "${trimmedTag}" foi iniciada!`);
+    toast.info("A análise está em andamento. Você será notificado quando estiver pronta.");
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      {/* Seletor de tópico */}
+      <TopicSelector 
+        value={state.topic} 
+        onChange={handleTopicChange}
+      />
+      
+      {/* Campo de busca */}
       <div className="relative mb-6 group">
         <span className="material-symbols-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 transition-all duration-300 group-focus-within:text-primary-500">
           tag
@@ -50,6 +69,8 @@ const TagSearch = () => {
           ex: iPhone 15
         </div>
       </div>
+      
+      {/* Botão de submit */}
       <button
         type="submit"
         disabled={state.isLoading}

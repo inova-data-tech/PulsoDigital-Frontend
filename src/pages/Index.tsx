@@ -41,7 +41,7 @@ const Index = () => {
         <main className="flex-1 max-w-4xl mx-auto w-full py-6">
           <div className="bg-white rounded-2xl shadow-xl p-6 md:p-10 lg:p-14 transition-all duration-300 hover:shadow-2xl">
             <div className="flex justify-center mb-8">
-              <PulsoDigitalLogo width={250} height={100} />
+              <PulsoDigitalLogo width={400} height={160} />
             </div>
             
             <div className="text-center mb-12">

@@ -3,6 +3,7 @@ import FeatureCard from "@/components/FeatureCard";
 import TagSearch from "@/components/TagSearch";
 import PulsoDigitalLogo from "@/components/PulsoDigitalLogo";
 import SearchHistory from "@/components/SearchHistory";
+import SettingsPanel from "@/components/SettingsPanel";
 
 const Index = () => {
   const features: Feature[] = [
@@ -27,16 +28,18 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 md:p-8">
-      <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">        
-        {/* Painel de histórico de pesquisas à esquerda */}
-        <div className="hidden lg:block lg:w-80 lg:flex-shrink-0">
-          <SearchHistory />
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 md:p-6">
+      <div className="mx-auto max-w-screen-2xl flex flex-col lg:flex-row">
+        {/* Painel lateral esquerdo */}
+        <aside className="hidden lg:block lg:w-96 pt-8 pr-6">
+          <div className="sticky top-8">
+            <SearchHistory />
+          </div>
+        </aside>
         
         {/* Conteúdo principal */}
-        <div className="flex-1">
-          <div className="w-full max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-6 md:p-10 lg:p-16 transform transition-all duration-300 hover:shadow-2xl">
+        <main className="flex-1 max-w-4xl mx-auto w-full py-6">
+          <div className="bg-white rounded-2xl shadow-xl p-6 md:p-10 lg:p-14 transition-all duration-300 hover:shadow-2xl">
             <div className="flex justify-center mb-8">
               <PulsoDigitalLogo width={250} height={100} />
             </div>
@@ -65,12 +68,20 @@ const Index = () => {
               ))}
             </div>
             
-            {/* Histórico de pesquisas para mobile (aparece abaixo do conteúdo principal) */}
-            <div className="mt-12 lg:hidden">
+            {/* Histórico de pesquisas e configurações para mobile (aparecem abaixo do conteúdo principal) */}
+            <div className="mt-12 lg:hidden space-y-6">
               <SearchHistory />
+              <SettingsPanel />
             </div>
           </div>
-        </div>
+        </main>
+        
+        {/* Painel lateral direito */}
+        <aside className="hidden lg:block lg:w-72 pt-8 pl-6">
+          <div className="sticky top-8">
+            <SettingsPanel />
+          </div>
+        </aside>
       </div>
     </div>
   );

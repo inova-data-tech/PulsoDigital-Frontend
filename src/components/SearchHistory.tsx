@@ -1,12 +1,18 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Clock, X, Search, AlertCircle } from "lucide-react";
+import { Clock, X, Search, AlertCircle, BarChart2, ExternalLink } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { SearchHistoryItem, SearchStatus } from "@/lib/types";
 import { getSearchHistory, initDemoSearches, isDashboardReady } from "@/lib/search-service";
 import { toast } from "sonner";
 import { TOPICS, getTopicById } from "@/lib/topics";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface SearchHistoryProps {
   className?: string;
@@ -65,9 +71,9 @@ const TopicBadge = ({ topicId }: { topicId: string }) => {
   if (!topic) return null;
   
   return (
-    <div className="inline-flex items-center text-xs bg-gray-100 px-2 py-1 rounded-full">
+    <div className="inline-flex items-center text-xs bg-gray-100 px-2 py-1 rounded-full max-w-[100px] whitespace-nowrap">
       <span className="material-symbols-outlined text-xs mr-1">{topic.icon}</span>
-      <span>{topic.name}</span>
+      <span className="truncate">{topic.name}</span>
     </div>
   );
 };
@@ -97,6 +103,15 @@ const SearchHistory = ({ className }: SearchHistoryProps) => {
   }, []);
 
   const handleSearchItemClick = (item: SearchHistoryItem) => {
+    if (!isDashboardReady(item.tag, item.topic)) {
+      toast.error("A análise ainda não está pronta. Por favor, aguarde.");
+      return;
+    }
+    navigate(`/resultados/${item.tag}?topic=${item.topic}`);
+  };
+
+  const navigateToDashboard = (e: React.MouseEvent, item: SearchHistoryItem) => {
+    e.stopPropagation();
     if (!isDashboardReady(item.tag, item.topic)) {
       toast.error("A análise ainda não está pronta. Por favor, aguarde.");
       return;
@@ -183,17 +198,17 @@ const SearchHistory = ({ className }: SearchHistoryProps) => {
             return (
               <li 
                 key={index} 
-                className={`p-3 ${itemClasses} ${bgClass} flex justify-between items-center transition-colors duration-200`}
+                className={`p-4 ${itemClasses} ${bgClass} flex justify-between items-center transition-colors duration-200`}
                 onClick={() => handleSearchItemClick(item)}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <StatusIndicator status={item.status} />
                   <div className="flex flex-col">
                     <div className="flex items-center">
                       <Search className="h-4 w-4 text-blue-500 mr-2" />
                       <span className="text-gray-800 font-medium">{item.tag}</span>
                     </div>
-                    <div className="flex items-center justify-between mt-1">
+                    <div className="flex items-center justify-start space-x-2 mt-1">
                       <span className="text-xs text-gray-500">
                         {formatTimestamp(item.createdAt) !== 'Agora' 
                           ? formatTimestamp(item.createdAt) 
@@ -203,14 +218,36 @@ const SearchHistory = ({ className }: SearchHistoryProps) => {
                     </div>
                   </div>
                 </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 w-6 p-0 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full flex-shrink-0"
-                  onClick={(e) => removeFromHistory(e, item.tag, item.topic)}
-                >
-                  <X className="h-4 w-4" />
-                </Button>
+                <div className="flex items-center space-x-1">
+                  {item.status === 'completed' && (
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 px-1.5 text-xs bg-blue-500 text-white hover:bg-blue-600 rounded-md flex items-center flex-shrink-0"
+                            onClick={(e) => navigateToDashboard(e, item)}
+                          >
+                            <BarChart2 className="h-3.5 w-3.5 mr-1" />
+                            Dashboard
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Ver dashboard da tag "{item.tag}"</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  )}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-7 w-7 p-0 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full flex-shrink-0"
+                    onClick={(e) => removeFromHistory(e, item.tag, item.topic)}
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
               </li>
             );
           })}

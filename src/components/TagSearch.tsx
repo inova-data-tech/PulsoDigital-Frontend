@@ -47,30 +47,31 @@ const TagSearch = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* Seletor de tópico */}
-      <TopicSelector 
-        value={state.topic} 
-        onChange={handleTopicChange}
-      />
-      
-      {/* Campo de busca */}
-      <div className="relative mb-6 group">
-        <span className="material-symbols-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 transition-all duration-300 group-focus-within:text-primary-500">
-          tag
-        </span>
-        <input
-          type="text"
-          placeholder="Digite sua tag (ex: S23 Ultra, ChatGPT, Airfryer...)"
-          className="w-full py-4 px-12 text-lg border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 shadow-sm"
-          value={state.tag}
-          onChange={handleInputChange}
-        />
-        <div className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gray-100 text-gray-500 px-2 py-1 rounded-lg text-xs font-medium">
-          ex: iPhone 15
+      <div className="flex items-end gap-4 mb-6">
+        <div className="w-1/4">
+          <TopicSelector 
+            value={state.topic} 
+            onChange={handleTopicChange}
+          />
+        </div>
+        
+        <div className="relative group flex-1">
+          <span className="material-symbols-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 transition-all duration-300 group-focus-within:text-primary-500">
+            tag
+          </span>
+          <input
+            type="text"
+            placeholder="Digite sua tag (ex: S23 Ultra, ChatGPT...)"
+            className="w-full py-4 px-12 text-lg border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 shadow-sm"
+            value={state.tag}
+            onChange={handleInputChange}
+          />
+          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-gray-100 text-gray-500 px-2 py-1 rounded-lg text-xs font-medium">
+            ex: iPhone 15
+          </div>
         </div>
       </div>
       
-      {/* Botão de submit */}
       <button
         type="submit"
         disabled={state.isLoading}

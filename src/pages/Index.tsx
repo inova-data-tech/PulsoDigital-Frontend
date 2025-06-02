@@ -73,6 +73,27 @@ const Index = () => {
               <SearchHistory />
               <SettingsPanel />
             </div>
+
+            {/* Seção de Contribuidores Discreta */}
+            <div className="mt-12 pt-6 text-center border-t border-gray-200">
+              <p className="text-xs text-gray-500 mb-3">
+                Com a colaboração de:
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-2 max-w-md mx-auto">
+                {[ 
+                  "Caio Rocha", 
+                  "Gabriel Coelho", 
+                  "João Vitor Melo", 
+                  "José Lucas Vasconcelos", 
+                  "Sarah Ocy", 
+                  "Samuel Martins"
+                ].map((name) => (
+                  <p key={name} className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
+                    {name}
+                  </p>
+                ))}
+              </div>
+            </div>
           </div>
         </main>
         

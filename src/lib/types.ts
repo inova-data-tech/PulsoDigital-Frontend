@@ -42,4 +42,5 @@ export type Topic = {
   icon: string;
   description: string;
   sources: string[];
+  suggestions?: string[];
 };

@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { TagSearchState } from "@/lib/types";
+import { TagSearchState, Topic } from "@/lib/types";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import { addSearch, isDashboardReady } from "@/lib/search-service";
+import { addSearch } from "@/lib/search-service";
 import TopicSelector from "./TopicSelector";
-import { getDefaultTopic } from "@/lib/topics";
+import { getDefaultTopic, getTopicById, TOPICS } from "@/lib/topics";
+import { Button } from "@/components/ui/button";
 
 const TagSearch = () => {
   const navigate = useNavigate();
@@ -19,7 +20,11 @@ const TagSearch = () => {
   };
   
   const handleTopicChange = (topicId: string) => {
-    setState({ ...state, topic: topicId });
+    setState({ ...state, topic: topicId, tag: "" });
+  };
+
+  const handleSuggestionClick = (suggestion: string) => {
+    setState({ ...state, tag: suggestion });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -33,21 +38,18 @@ const TagSearch = () => {
     setState({ ...state, isLoading: true });
     
     const trimmedTag = state.tag.trim();
-    
-    // Adicionar ao histórico e iniciar processamento
     addSearch(trimmedTag, state.topic);
-    
-    // Redefinir o estado do input
     setState({ ...state, isLoading: false, tag: "" });
-    
-    // Notificar o usuário
     toast.success(`Análise da tag "${trimmedTag}" foi iniciada!`);
     toast.info("A análise está em andamento. Você será notificado quando estiver pronta.");
   };
 
+  const currentTopic = getTopicById(state.topic);
+  const currentSuggestions = currentTopic?.suggestions || [];
+
   return (
     <form onSubmit={handleSubmit}>
-      <div className="flex items-end gap-4 mb-6">
+      <div className="flex items-end gap-4 mb-2">
         <div className="w-1/4">
           <TopicSelector 
             value={state.topic} 
@@ -71,6 +73,23 @@ const TagSearch = () => {
           </div>
         </div>
       </div>
+
+      {currentSuggestions.length > 0 && (
+        <div className="mb-6 flex flex-wrap gap-2 items-center justify-center">
+          <span className="text-sm text-gray-600 mr-2">Sugestões:</span>
+          {currentSuggestions.map((suggestion, index) => (
+            <Button
+              key={index}
+              variant="outline"
+              size="sm"
+              className="text-xs h-7 px-2 py-1 bg-gray-50 hover:bg-gray-100 text-gray-700 border-gray-300"
+              onClick={() => handleSuggestionClick(suggestion)}
+            >
+              {suggestion}
+            </Button>
+          ))}
+        </div>
+      )}
       
       <button
         type="submit"
